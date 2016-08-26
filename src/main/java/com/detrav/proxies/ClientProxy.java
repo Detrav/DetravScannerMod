@@ -1,10 +1,13 @@
 package com.detrav.proxies;
 
 import com.detrav.DetravScannerMod;
+import com.detrav.entities.EntityElectricTunnelBore;
 import com.detrav.enums.Textures01;
 import com.detrav.events.DetravDrawBlockHighlightEventHandler;
 import com.detrav.events.DetravKeyHandler;
 import com.detrav.gui.DetravGuiProPick;
+import com.detrav.renderer.RenderTunnelBore;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import gregtech.api.enums.Textures;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +29,7 @@ public class ClientProxy extends CommonProxy {
         DetravDrawBlockHighlightEventHandler.register();
         //Textures.ItemIcons.CustomIcon test = new Textures.ItemIcons.CustomIcon("iconsets/PRO_PICK_HEAD");
         //test.run();
-
+        RenderingRegistry.registerEntityRenderingHandler(EntityElectricTunnelBore.class, new RenderTunnelBore());
     }
     @Override
     public void onLoad()
