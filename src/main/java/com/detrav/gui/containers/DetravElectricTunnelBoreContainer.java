@@ -17,18 +17,18 @@ public class DetravElectricTunnelBoreContainer extends Container {
 
     public DetravElectricTunnelBoreContainer(InventoryPlayer inv, EntityElectricTunnelBore bore) {
 
+
         addSlotToContainer(new Slot(bore,0,17,6));//drill
         addSlotToContainer(new Slot(bore,1,36,6));//battery
 
-        addSlotToContainer(new Slot(bore,2,17,44));//bricks in
-        addSlotToContainer(new Slot(bore,3,36,44));//bricks out
+        for (int i = 0; i < 9; i++)
+            addSlotToContainer(new Slot(bore,i+ 2,8 + i * 18,44));//bricks
 
-        addSlotToContainer(new Slot(bore,4,17,63));//torch in
-        addSlotToContainer(new Slot(bore,5,36,63));//torch out
+        for (int i = 0; i < 9; i++)
+            addSlotToContainer(new Slot(bore,i+11,8 + i * 18,63));//torch
 
-        addSlotToContainer(new Slot(bore,6,17,82));//torch in
-        addSlotToContainer(new Slot(bore,7,36,82));//torch out
-
+        for (int i = 0; i < 9; i++)
+            addSlotToContainer(new Slot(bore,i+20,8 + i * 18,63));//rails
 
         bindPlayerInventory(inv);
     }
