@@ -2,6 +2,7 @@ package com.detrav.items.behaviours;
 
 import com.detrav.entities.EntityElectricTunnelBore;
 import gregtech.api.items.GT_MetaBase_Item;
+import gregtech.api.items.GT_MetaGenerated_Tool;
 import gregtech.common.items.behaviors.Behaviour_None;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.common.blocks.tracks.TrackTools;
@@ -50,7 +51,8 @@ public class BehaviourDetravElectricTunnelBore extends Behaviour_None {
 
 //					System.out.println("PlayerYaw = " + playerYaw + " Yaw = " + facing + " Meta = " + meta);
 
-                    EntityMinecart bore = new EntityElectricTunnelBore(aWorld, (float) aX + 0.5F, (float) aY, (float) aZ + 0.5F, facing);
+                    EntityElectricTunnelBore bore = new EntityElectricTunnelBore(aWorld, (float) aX + 0.5F, (float) aY, (float) aZ + 0.5F, facing);
+                    bore.setMaterial(GT_MetaGenerated_Tool.getPrimaryMaterial(aStack));
                     CartTools.setCartOwner(bore, aPlayer);
                     aWorld.spawnEntityInWorld(bore);
                     aStack.stackSize -= 1;

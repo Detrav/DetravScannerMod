@@ -5,6 +5,7 @@ import com.detrav.entities.EntityElectricTunnelBore;
 import com.detrav.enums.Textures01;
 import com.detrav.events.DetravDrawBlockHighlightEventHandler;
 import com.detrav.events.DetravKeyHandler;
+import com.detrav.gui.DetravGuiElectricTunnelBore;
 import com.detrav.gui.DetravGuiProPick;
 import com.detrav.renderer.RenderTunnelBore;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -43,6 +44,9 @@ public class ClientProxy extends CommonProxy {
         player.openGui(DetravScannerMod.instance, DetravGuiProPick.GUI_ID,player.worldObj,(int)player.posX,(int)player.posY,(int)player.posZ);
         //Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("NetworkTested: " + Integer.toString(level)));
     }
+
+
+
     @Override
     public void onPreInit()
     {

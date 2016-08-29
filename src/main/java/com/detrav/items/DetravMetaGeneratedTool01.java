@@ -28,6 +28,7 @@ public class DetravMetaGeneratedTool01 extends GT_MetaGenerated_Tool {
         INSTANCE = this;
         addTool(0, "Prospector's Pick", "", new DetravToolProPick(), new Object[]{DetravToolDictNames.craftingToolProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)});
         addTool(2, "Repair tools", "", new DetravRepairTool(), new Object[]{DetravToolDictNames.craftingRepairTool, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 8L)});
+        addTool(4, "Electric Tunnel Bore","", new DetravElectricTunnelBore(), new Object[]{DetravToolDictNames.craftingElectricTunnelBore});
         addTool(100, "Electric Prospector's Scanner (LV)", "", new DetravToolLVElectricProPick(), new Object[]{DetravToolDictNames.craftingToolElectricProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
         addTool(102, "Electric Prospector's Scanner (MV)", "", new DetravToolMVElectricProPick(), new Object[]{DetravToolDictNames.craftingToolElectricProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
         addTool(104, "Electric Prospector's Scanner (HV)", "", new DetravToolHVElectricProPick(), new Object[]{DetravToolDictNames.craftingToolElectricProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
@@ -66,6 +67,8 @@ public class DetravMetaGeneratedTool01 extends GT_MetaGenerated_Tool {
                     aList.add(tOffset + 2, EnumChatFormatting.WHITE + "Efficiency 90%" + EnumChatFormatting.GRAY);
                     aList.add(tOffset + 3, EnumChatFormatting.WHITE + "Cost 1k per operation" + EnumChatFormatting.GRAY);
                     aList.add(tOffset + 4, "Right click to open GUI");
+                    break;
+                case 4:
                     break;
                 case 100:
                 case 101:

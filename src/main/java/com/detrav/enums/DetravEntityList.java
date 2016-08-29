@@ -19,7 +19,7 @@ import java.util.Locale;
  */
 public enum DetravEntityList {
 
-    Electric_Tunnel_Bore(1, 3,EntityElectricTunnelBore.class, DetravItemList.Electric_Tunel_Bore.get(0L,new Object[0]));
+    Electric_Tunnel_Bore(1, 3,EntityElectricTunnelBore.class);
 
     private final Class<? extends EntityMinecart> type;
     private final byte id;
@@ -28,7 +28,7 @@ public enum DetravEntityList {
     private ItemStack cartItem;
     //private String name;
 
-    private DetravEntityList(int id , int rarity, Class<? extends EntityMinecart> type, ItemStack contents) {
+    private DetravEntityList(int id , int rarity, Class<? extends EntityMinecart> type ) {
         int entityId = -1;
         try {
             entityId = (byte) id;

@@ -11,7 +11,6 @@ import org.lwjgl.opengl.GL11;
 import mods.railcraft.api.carts.bore.IBoreHead;
 import mods.railcraft.common.carts.EntityTunnelBore;
 import mods.railcraft.common.core.RailcraftConstants;
-import mods.railcraft.client.render.models.bore.ModelTunnelBore;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderTunnelBore extends Render {
@@ -26,12 +25,12 @@ public class RenderTunnelBore extends Render {
     public void render(EntityElectricTunnelBore bore, double d, double d1, double d2, float yaw, float f1) {
         // System.out.println("Render Yaw = " + f);
         GL11.glPushMatrix();
-        long var10 = (long) bore.getEntityId() * 493286711L;
+        /*long var10 = (long) bore.getEntityId() * 493286711L;
         var10 = var10 * var10 * 4392167121L + var10 * 98761L;
         float tx = (((float) (var10 >> 16 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
         float ty = (((float) (var10 >> 20 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
         float tz = (((float) (var10 >> 24 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
-        GL11.glTranslatef(tx, ty, tz);
+        GL11.glTranslatef(tx, ty, tz);*/
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
         switch (bore.getFacing()) {
             case NORTH:
@@ -64,23 +63,28 @@ public class RenderTunnelBore extends Render {
 
 
 
-        int j = 0xffffff;
+        /*int j = 0xff0000;
         float c1 = (float) (j >> 16 & 0xff) / 255F;
         float c2 = (float) (j >> 8 & 0xff) / 255F;
         float c3 = (float) (j & 0xff) / 255F;
 
-        GL11.glColor4f(c1 * light, c2 * light, c3 * light, 1.0F);
+        GL11.glColor4f(c1 * light, c2 * light, c3 * light, 1.0F);*/
 
-        /*//IBoreHead head = bore.getBoreHead();
+        /*IBoreHead head = bore.getBoreHead();
         if (head != null) {
             bindTexture(head.getBoreTexture());
             modelTunnelBore.setRenderBoreHead(true);
-        } else {*/
+        } else {
             bindTexture(TEXTURE);
             modelTunnelBore.setRenderBoreHead(false);
-        //}
+        }*/
 
-        GL11.glScalef(-1F, -1F, 1.0F);
+        bindTexture(TEXTURE);
+        modelTunnelBore.setRenderBoreHead(false);
+
+        modelTunnelBore.setColors(bore.getBaseColor());
+
+        GL11.glScalef(-0.5F, -0.5F, 0.5F);
 
         //modelTunnelBore.setBoreHeadRotation(bore.getBoreRotationAngle());
         //modelTunnelBore.setBoreActive(bore.isMinecartPowered());

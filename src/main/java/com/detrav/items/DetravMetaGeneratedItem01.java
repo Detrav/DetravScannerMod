@@ -25,7 +25,7 @@ public class DetravMetaGeneratedItem01 extends DetravMetaGeneratedItem {
         this.setCreativeTab(DetravScannerMod.TAB_DETRAV);
         int tLastID = 0;
         DetravItemList.Shape_Extruder_ProPick.set(addItem(tLastID = 0, "Extruder Shape (Prospector's Pick Head)", "Extruder Shape for making Prospector's Picks", new Object[0]));
-        DetravItemList.Electric_Tunel_Bore.set(addItem(tLastID = 1, "Electric Tunel Bore", "Tunel Bore with Electric",new Object[]{ new BehaviourDetravElectricTunnelBore() }));
+        //DetravItemList.Electric_Tunel_Bore.set(addItem(tLastID = 1, "Electric Tunel Bore", "Tunel Bore with Electric",new Object[]{ new BehaviourDetravElectricTunnelBore() }));
     }
 
     @Override

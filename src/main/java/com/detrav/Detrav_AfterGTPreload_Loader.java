@@ -3,6 +3,7 @@ package com.detrav;
 import com.detrav.enums.DetravItemList;
 import com.detrav.items.DetravMetaGeneratedItem01;
 import com.detrav.items.DetravMetaGeneratedTool01;
+import com.detrav.items.processing.ProcessingDetravElectricTunnelBore;
 import com.detrav.items.processing.ProcessingDetravPortableCharger;
 import com.detrav.items.processing.ProcessingDetravShaping;
 import com.detrav.items.processing.ProcessingDetravToolProPick;
@@ -25,6 +26,7 @@ public class Detrav_AfterGTPreload_Loader implements Runnable {
         new ProcessingDetravToolProPick();
         new ProcessingDetravShaping();
         new ProcessingDetravPortableCharger();
+        new ProcessingDetravElectricTunnelBore();
         //new Detrav_MetaGenerated_Tool_01();
         //new ProcessingDetravToolProPick();
 

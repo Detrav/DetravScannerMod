@@ -1,5 +1,7 @@
 package com.detrav.proxies;
 
+import cpw.mods.fml.client.FMLClientHandler;
+
 /**
  * Created by wital_000 on 19.03.2016.
  */
@@ -18,4 +20,5 @@ public class ServerProxy extends CommonProxy {
     public void onPreInit() {
         super.onPreInit();
     }
+
 }

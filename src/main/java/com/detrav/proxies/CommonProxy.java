@@ -1,10 +1,13 @@
 package com.detrav.proxies;
 
 import com.detrav.DetravScannerMod;
+import com.detrav.entities.EntityElectricTunnelBore;
 import com.detrav.enums.DetravItemList;
 import com.detrav.enums.DetravSimpleItems;
+import com.detrav.gui.DetravGuiElectricTunnelBore;
 import com.detrav.gui.DetravGuiProPick;
 import com.detrav.gui.DetravRepairToolGui;
+import com.detrav.gui.containers.DetravElectricTunnelBoreContainer;
 import com.detrav.gui.containers.DetravPortableChargerContainer;
 import com.detrav.gui.DetravPortableChargerGui;
 import com.detrav.gui.containers.DetravRepairToolContainer;
@@ -14,6 +17,7 @@ import gregtech.api.GregTech_API;
 import gregtech.api.enums.*;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -73,6 +77,10 @@ public class CommonProxy implements IGuiHandler {
                 return new DetravPortableChargerContainer(player.inventory,world,player.getCurrentEquippedItem());
             case DetravRepairToolGui.GUI_ID:
                 return new DetravRepairToolContainer(player.inventory,world,player.getCurrentEquippedItem());
+            case DetravGuiElectricTunnelBore.GUI_ID:
+                Entity entity = world.getEntityByID(y);
+                if (entity instanceof EntityElectricTunnelBore)
+                    return new DetravElectricTunnelBoreContainer(player.inventory,(EntityElectricTunnelBore)entity);
             default:
                 return null;
         }
@@ -84,9 +92,13 @@ public class CommonProxy implements IGuiHandler {
             case DetravGuiProPick.GUI_ID:
                 return new DetravGuiProPick();
             case DetravPortableChargerGui.GUI_ID:
-                return new DetravPortableChargerGui(player.inventory,world,player.getCurrentEquippedItem());
+                return new DetravPortableChargerGui(player.inventory, world, player.getCurrentEquippedItem());
             case DetravRepairToolGui.GUI_ID:
-                return new DetravRepairToolGui(player.inventory,world,player.getCurrentEquippedItem());
+                return new DetravRepairToolGui(player.inventory, world, player.getCurrentEquippedItem());
+            case DetravGuiElectricTunnelBore.GUI_ID:
+                Entity entity = world.getEntityByID(y);
+                if (entity instanceof EntityElectricTunnelBore)
+                    return new DetravGuiElectricTunnelBore(player.inventory,(EntityElectricTunnelBore)entity);
             default:
                 return null;
         }
@@ -96,6 +108,12 @@ public class CommonProxy implements IGuiHandler {
     public void openProPickGui()
     {
         //just Client code
+    }
+
+    public void openElectricTunnelBoreGui(int entityId, EntityPlayer player)
+    {
+        //EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        player.openGui(DetravScannerMod.instance, DetravGuiElectricTunnelBore.GUI_ID, player.worldObj, (int)player.posX,entityId,(int)player.posZ);
     }
 
     public void openPortableChargerGui(EntityPlayer player)
