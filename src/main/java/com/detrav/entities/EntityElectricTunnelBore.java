@@ -184,7 +184,7 @@ public class EntityElectricTunnelBore extends CartContainerBase implements IInve
 
     @Override
     public int getSizeInventory() {
-        return 25;
+        return 29;
     }
 
     @Override
