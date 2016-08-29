@@ -30,6 +30,7 @@ public class EntityElectricTunnelBore extends CartContainerBase implements IInve
     public static final float LENGTH = 6f;
     private boolean hasInit;
     Materials aMaterial;
+    public static final float SPEED = 0.2f;
 
     public EntityElectricTunnelBore(World world, double i, double j, double k) {
         this(world, i, j, k, ForgeDirection.SOUTH);
@@ -136,7 +137,7 @@ public class EntityElectricTunnelBore extends CartContainerBase implements IInve
     protected void readEntityFromNBT(NBTTagCompound data) {
         super.readEntityFromNBT(data);
         setFacing(ForgeDirection.getOrientation(data.getByte("facing")));
-        aMaterial = Materials.getRealMaterial(data.getString("material"));
+        setMaterial(Materials.getRealMaterial(data.getString("material")));
         //setDelay(data.getInteger("delay"));
         //setActive(data.getBoolean("active"));
         //setBurnTime(data.getInteger("burnTime"));
@@ -248,5 +249,10 @@ public class EntityElectricTunnelBore extends CartContainerBase implements IInve
     public boolean doInteract(EntityPlayer player) {
         DetravScannerMod.proxy.openElectricTunnelBoreGui(this.getEntityId(),player);
         return true;
+    }
+
+    @Override
+    public float getMaxCartSpeedOnRail() {
+        return SPEED*(aMaterial.dlevel + 1);
     }
 }
