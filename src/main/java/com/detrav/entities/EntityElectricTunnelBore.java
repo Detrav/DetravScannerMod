@@ -31,6 +31,9 @@ public class EntityElectricTunnelBore extends CartContainerBase implements IInve
     private boolean hasInit;
     Materials aMaterial;
     public static final float SPEED = 0.2f;
+    public final InventoryMapper invBricks = new InventoryMapper(this, 2, 10);
+    public final InventoryMapper invTorch = new InventoryMapper(this, 11, 19);
+    public final InventoryMapper invRails = new InventoryMapper(this, 20, 28);
 
     public EntityElectricTunnelBore(World world, double i, double j, double k) {
         this(world, i, j, k, ForgeDirection.SOUTH);
