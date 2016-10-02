@@ -68,8 +68,8 @@ public class DetravScannerMod
     @EventHandler
     public void onPostLoad(FMLPostInitializationEvent aEvent) {
         proxy.onPostLoad();
-        DetravBlockBreakEventHandler.register();
-        DetravLoginEventHandler.register();
+        //DetravBlockBreakEventHandler.register();
+        //DetravLoginEventHandler.register();
     }
 
     @EventHandler
