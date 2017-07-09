@@ -10,6 +10,7 @@ import gregtech.api.damagesources.GT_DamageSources;
 import gregtech.api.interfaces.IIconContainer;
 import gregtech.api.interfaces.IToolStats;
 import gregtech.api.items.GT_MetaGenerated_Tool;
+import gregtech.common.tools.GT_Tool;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
@@ -29,7 +30,7 @@ import java.util.List;
 /**
  * Created by wital_000 on 07.04.2016.
  */
-public class DetravToolPortableCharger implements IToolStats {
+public class DetravToolPortableCharger extends GT_Tool {
     public int getToolDamagePerBlockBreak() {
         return GT_Mod.gregtechproxy.mHardRock ? 50 : 100;
     }
