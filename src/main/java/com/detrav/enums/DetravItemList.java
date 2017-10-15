@@ -18,7 +18,6 @@ public enum DetravItemList implements IItemContainer {
     Solar_Boiler_Low,
     Solar_Boiler_Medium,
     Solar_Boiler_High,
-    DetravAdvancedMiner2,
     ConfiguredCircuit;
 
 
@@ -51,9 +50,11 @@ public enum DetravItemList implements IItemContainer {
 
     @Override
     public Block getBlock() {
-        if (mHasNotBeenSet)
-            throw new IllegalAccessError("The Enum '" + name() + "' has not been set to an Item at this time!");
-        return GT_Utility.getBlockFromStack(getItem());
+        if (this.mHasNotBeenSet) {
+            throw new IllegalAccessError("The Enum '" + this.name() + "' has not been set to an Item at this time!");
+        } else {
+            return GT_Utility.getBlockFromItem(this.getItem());
+        }
     }
 
     @Override
