@@ -13,7 +13,16 @@ import com.detrav.gui.DetravPortableAnvilGui;
 import com.detrav.gui.containers.DetravPortableAnvilContainer;
 import com.detrav.gui.containers.DetravPortableChargerContainer;
 import com.detrav.gui.DetravPortableChargerGui;
+import com.detrav.items.DetravMetaGeneratedItem01;
 import com.detrav.items.DetravMetaGeneratedTool01;
+import com.detrav.items.processing.ProcessingDetravPortableCharger;
+import com.detrav.items.processing.ProcessingDetravShaping;
+import com.detrav.items.processing.ProcessingDetravSmartPlunger;
+import com.detrav.items.processing.ProcessingDetravToolProPick;
+import com.detrav.tileentities.Detrav_MetaTileEntity_Boiler_Solar_High;
+import com.detrav.tileentities.Detrav_MetaTileEntity_Boiler_Solar_Low;
+import com.detrav.tileentities.Detrav_MetaTileEntity_Boiler_Solar_Medium;
+import com.detrav.utils.DetravConfig;
 import cpw.mods.fml.common.network.IGuiHandler;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.*;
@@ -25,6 +34,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.config.Configuration;
 
 /**
  * Created by wital_000 on 19.03.2016.
@@ -47,30 +57,33 @@ public class CommonProxy implements IGuiHandler {
             }
         }
 
+        if(DetravConfig.PROPICK_ENABLE)
         if (!GregTech_API.sSpecialFile.get(ConfigCategories.general, "DisableFlintTools", false)) {
             GT_ModHandler.addCraftingRecipe(DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(0, 1, Materials.Flint, Materials.Wood, null), GT_ModHandler.RecipeBits.NOT_REMOVABLE, new Object[]{"FF", "SS", Character.valueOf('S'), OrePrefixes.stick.get(Materials.Wood), Character.valueOf('F'), new ItemStack(Items.flint, 1)});
         }
 
         //boiler recipes
 
-        GT_ModHandler.addShapelessCraftingRecipe(DetravItemList.Solar_Boiler_Low.get(1L, new Object[0]),new Object[]{ItemList.Machine_Bronze_Boiler_Solar});
-        GT_ModHandler.addCraftingRecipe(DetravItemList.Solar_Boiler_Low.get(1L, new Object[0]), GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE | GT_ModHandler.RecipeBits.BUFFERED, new Object[]{"GGG", "BBB", "PMP", Character.valueOf('M'), ItemList.Machine_Bronze_Boiler, Character.valueOf('P'), OrePrefixes.pipeSmall.get(Materials.Bronze), Character.valueOf('B'), OrePrefixes.dye.get(Materials.Black), Character.valueOf('G'), new ItemStack(Blocks.glass, 1)});
-        GT_ModHandler.addCraftingRecipe(DetravItemList.Solar_Boiler_Medium.get(1L, new Object[0]), GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE | GT_ModHandler.RecipeBits.BUFFERED, new Object[]{"GGG", "NNN", "PMP", Character.valueOf('M'), ItemList.Machine_Steel_Boiler, Character.valueOf('P'), OrePrefixes.pipeSmall.get(Materials.Steel), Character.valueOf('N'), OrePrefixes.dust.get(Materials.Nickel), Character.valueOf('G'), new ItemStack(Blocks.glass, 1)});
-        GT_ModHandler.addCraftingRecipe(DetravItemList.Solar_Boiler_Medium.get(1L, new Object[0]), GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE | GT_ModHandler.RecipeBits.BUFFERED, new Object[]{"GGG", "NNN", "PMP", Character.valueOf('M'), ItemList.Machine_Steel_Boiler, Character.valueOf('P'), OrePrefixes.pipeSmall.get(Materials.Steel), Character.valueOf('N'), OrePrefixes.dust.get(Materials.Nickel), Character.valueOf('G'), new ItemStack(Blocks.glass, 1)});
-        GT_ModHandler.addCraftingRecipe(DetravItemList.Solar_Boiler_High.get(1L, new Object[0]), GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE | GT_ModHandler.RecipeBits.BUFFERED, new Object[]{"GGG", "RRR", "PMP", Character.valueOf('M'), ItemList.Casing_HV, Character.valueOf('P'), OrePrefixes.pipeSmall.get(Materials.StainlessSteel), Character.valueOf('R'), OrePrefixes.dust.get(Materials.Rutile), Character.valueOf('G'), new ItemStack(Blocks.glass, 1)});
+        if(DetravConfig.SOLAR_BOILERS_ENABLE) {
+            GT_ModHandler.addShapelessCraftingRecipe(DetravItemList.Solar_Boiler_Low.get(1L, new Object[0]), new Object[]{ItemList.Machine_Bronze_Boiler_Solar});
+            GT_ModHandler.addCraftingRecipe(DetravItemList.Solar_Boiler_Low.get(1L, new Object[0]), GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE | GT_ModHandler.RecipeBits.BUFFERED, new Object[]{"GGG", "BBB", "PMP", Character.valueOf('M'), ItemList.Machine_Bronze_Boiler, Character.valueOf('P'), OrePrefixes.pipeSmall.get(Materials.Bronze), Character.valueOf('B'), OrePrefixes.dye.get(Materials.Black), Character.valueOf('G'), new ItemStack(Blocks.glass, 1)});
+            GT_ModHandler.addCraftingRecipe(DetravItemList.Solar_Boiler_Medium.get(1L, new Object[0]), GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE | GT_ModHandler.RecipeBits.BUFFERED, new Object[]{"GGG", "NNN", "PMP", Character.valueOf('M'), ItemList.Machine_Steel_Boiler, Character.valueOf('P'), OrePrefixes.pipeSmall.get(Materials.Steel), Character.valueOf('N'), OrePrefixes.dust.get(Materials.Nickel), Character.valueOf('G'), new ItemStack(Blocks.glass, 1)});
+            GT_ModHandler.addCraftingRecipe(DetravItemList.Solar_Boiler_Medium.get(1L, new Object[0]), GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE | GT_ModHandler.RecipeBits.BUFFERED, new Object[]{"GGG", "NNN", "PMP", Character.valueOf('M'), ItemList.Machine_Steel_Boiler, Character.valueOf('P'), OrePrefixes.pipeSmall.get(Materials.Steel), Character.valueOf('N'), OrePrefixes.dust.get(Materials.Nickel), Character.valueOf('G'), new ItemStack(Blocks.glass, 1)});
+            GT_ModHandler.addCraftingRecipe(DetravItemList.Solar_Boiler_High.get(1L, new Object[0]), GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE | GT_ModHandler.RecipeBits.BUFFERED, new Object[]{"GGG", "RRR", "PMP", Character.valueOf('M'), ItemList.Casing_HV, Character.valueOf('P'), OrePrefixes.pipeSmall.get(Materials.StainlessSteel), Character.valueOf('R'), OrePrefixes.dust.get(Materials.Rutile), Character.valueOf('G'), new ItemStack(Blocks.glass, 1)});
+        }
 
-        GT_ModHandler.addCraftingRecipe(
-                DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(108,1,Materials.Iron, Materials._NULL,null),
-                GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE | GT_ModHandler.RecipeBits.BUFFERED,
-                new Object[]{ "GGG","dCi","GGG", Character.valueOf('G'), new ItemStack(Items.dye,1,2), Character.valueOf('C'), ItemList.Circuit_Basic.get(1) });
+        //GT_ModHandler.addCraftingRecipe(
+        //        DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(108,1,Materials.Iron, Materials._NULL,null),
+         //       GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE | GT_ModHandler.RecipeBits.BUFFERED,
+        //        new Object[]{ "GGG","dCi","GGG", Character.valueOf('G'), new ItemStack(Items.dye,1,2), Character.valueOf('C'), ItemList.Circuit_Basic.get(1) });
 
 
         //Treetap recipes
-
+        if(DetravConfig.TREE_TAP_ENABLE)
         GT_ModHandler.addShapelessCraftingRecipe(DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(10,1, Materials.Wood,Materials.Wood, null ),
                 new Object[]{Ic2Items.treetap,Ic2Items.rubberWood,Ic2Items.resin});
 
-        GT_ModHandler.addShapelessCraftingRecipe(ItemList.Circuit_Integrated.get(1), new Object[]{ DetravItemList.ConfiguredCircuit } );
+
         //DetravCraftingEventHandler.register();
         DetravEntityDropEvent.register();
         DetravLevelUpEvent.register();
@@ -122,6 +135,39 @@ public class CommonProxy implements IGuiHandler {
         player.openGui(DetravScannerMod.instance, DetravPortableAnvilGui.GUI_ID,player.worldObj,(int)player.posX,(int)player.posY,(int)player.posZ);
     }
 
+    public void onPreLoad()
+    {
+
+        //items
+        new DetravMetaGeneratedItem01();
+        new DetravMetaGeneratedTool01();
+
+        //recipes and etc
+        new ProcessingDetravToolProPick();
+        new ProcessingDetravShaping();
+        if (DetravConfig.PORTABLE_CHARGER_ENABLE)
+            new ProcessingDetravPortableCharger();
+        if(DetravConfig.SMART_PLUNGER_ENABLE)
+            new ProcessingDetravSmartPlunger();
+        //new Detrav_MetaGenerated_Tool_01();
+        //new ProcessingDetravToolProPick();
+
+        if (DetravConfig.REPAIR_TOOL_ENABLE)
+            GT_ModHandler.addCraftingRecipe(DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(2, 1, Materials.Iron, Materials._NULL, null)
+                    , GT_ModHandler.RecipeBits.DISMANTLEABLE | GT_ModHandler.RecipeBits.DO_NOT_CHECK_FOR_COLLISIONS | GT_ModHandler.RecipeBits.BUFFERED, new Object[]{"IBI", " I ", "III", Character.valueOf('I'), OrePrefixes.ingot.get(Materials.Iron), Character.valueOf('B'), OrePrefixes.block.get(Materials.Iron)});
+
+        //ItemList.Machine_Bronze_Boiler_Solar.set(new GT_MetaTileEntity_Boiler_Solar(105, "boiler.solar", "Simple Solar Boiler").getStackForm(1L));
+        if(DetravConfig.SOLAR_BOILERS_ENABLE) {
+
+
+            DetravItemList.Solar_Boiler_Low.set(new Detrav_MetaTileEntity_Boiler_Solar_Low(2051, "boiler.bronze.solar", "Bronze Solar Boiler").getStackForm(1L));
+            DetravItemList.Solar_Boiler_Medium.set(new Detrav_MetaTileEntity_Boiler_Solar_Medium(2052, "boiler.steel.solar", "Steel Solar Boiler").getStackForm(1L));
+            DetravItemList.Solar_Boiler_High.set(new Detrav_MetaTileEntity_Boiler_Solar_High(2053, "boiler.stainless.steel.solar", "Stainless Steel Solar Boiler").getStackForm(1L));
+        }
+        //DetravItemList.Anvil.set()
+
+        // GameRegistry.addRecipe(new DetravRepairRecipe());
+    }
 
 
     public void onPreInit()

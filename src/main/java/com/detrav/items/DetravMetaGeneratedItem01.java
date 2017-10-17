@@ -29,7 +29,7 @@ public class DetravMetaGeneratedItem01 extends DetravMetaGeneratedItem {
         this.setCreativeTab(DetravScannerMod.TAB_DETRAV);
         int tLastID;
         DetravItemList.Shape_Extruder_ProPick.set(addItem(tLastID = 0, "Extruder Shape (Prospector's Pick Head)", "Extruder Shape for making Prospector's Picks", new Object[0]));
-        DetravItemList.ConfiguredCircuit.set(addItem(tLastID = 1, "Configured Circuit", "", new Object[0]));
+
         //DetravItemList.Anvil.set(addItem(tLastID = 1, "Detrav Anvil","",new Object[0]));
         //addItemBehavior(tLastID,new BahaviourDetravAnvil());
     }

@@ -1,5 +1,6 @@
 package com.detrav.events;
 
+import com.detrav.utils.DetravConfig;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import gregtech.api.items.GT_Generic_Item;
@@ -41,6 +42,7 @@ public class DetravBlockBreakEventHandler {
             long minningMode = entityData.getLong("detrav.minning.mode");
             if (minningMode == 0) return;
             int side = 0;
+            int rad = DetravConfig.DIGGING_RADIUS;
             switch ((int) minningMode) {
                 case 1:
                     Vec3 vec3 = Vec3.createVectorHelper(player.posX, player.posY + 1.62f, player.posZ);
@@ -69,8 +71,8 @@ public class DetravBlockBreakEventHandler {
                     case 0:
                     case 1:
                         //    if (ev.getPlayer().rotationPitch > 45 || ev.getPlayer().rotationPitch < -45) {
-                        for (int i = ev.x - 1; i <= ev.x + 1; i++)
-                            for (int j = ev.z - 1; j <= ev.z + 1; j++)
+                        for (int i = ev.x - rad; i <= ev.x + rad; i++)
+                            for (int j = ev.z - rad; j <= ev.z + rad; j++)
                                 if (i != ev.x || j != ev.z)
                                     tryHarvestBlock(i, ev.y, j, ev);
                         break;
@@ -78,16 +80,16 @@ public class DetravBlockBreakEventHandler {
                     //    } else if ((-135 <= ev.getPlayer().rotationYaw && ev.getPlayer().rotationYaw <= -45) || (-315 <= ev.getPlayer().rotationYaw && ev.getPlayer().rotationYaw <= -225)) {
                     case 4:
                     case 5:
-                        for (int i = ev.z - 1; i <= ev.z + 1; i++)
-                            for (int j = ev.y - 1; j <= ev.y + 1; j++)
+                        for (int i = ev.z - rad; i <= ev.z + rad; i++)
+                            for (int j = ev.y - rad; j <= ev.y + rad; j++)
                                 if (i != ev.z || j != ev.y)
                                     tryHarvestBlock(ev.x, j, i, ev);
                         break;
                     //    } else if ((-225 <= ev.getPlayer().rotationYaw && ev.getPlayer().rotationYaw <= -135) || -45 <= ev.getPlayer().rotationYaw || ev.getPlayer().rotationYaw <= -315) {
                     case 2:
                     case 3:
-                        for (int i = ev.x - 1; i <= ev.x + 1; i++)
-                            for (int j = ev.y - 1; j <= ev.y + 1; j++)
+                        for (int i = ev.x - rad; i <= ev.x + rad; i++)
+                            for (int j = ev.y - rad; j <= ev.y + rad; j++)
                                 if (i != ev.x || j != ev.y)
                                     tryHarvestBlock(i, j, ev.z, ev);
                         break;
@@ -96,9 +98,9 @@ public class DetravBlockBreakEventHandler {
                 }
             else {
                 //    if (ev.getPlayer().rotationPitch > 45 || ev.getPlayer().rotationPitch < -45) {
-                for (int i = ev.x - 1; i <= ev.x + 1; i++)
-                    for (int j = ev.y - 1; j <= ev.y + 1; j++)
-                        for (int k = ev.z - 1; k <= ev.z + 1; k++)
+                for (int i = ev.x - rad; i <= ev.x + rad; i++)
+                    for (int j = ev.y - rad; j <= ev.y + rad; j++)
+                        for (int k = ev.z - rad; k <= ev.z + rad; k++)
                             if (i != ev.x || j != ev.y || k != ev.z)
                                 if (ev.block == ev.world.getBlock(i, j, k) && (ev.blockMetadata == ev.world.getBlockMetadata(i, j, k)))
                                     tryHarvestBlock(i, j, k, ev);
@@ -236,9 +238,11 @@ public class DetravBlockBreakEventHandler {
     public static void register() {
         if (!inited) {
             inited = true;
-            DetravBlockBreakEventHandler handler = new DetravBlockBreakEventHandler();
-            MinecraftForge.EVENT_BUS.register(handler);
-            FMLCommonHandler.instance().bus().register(handler);
+            if(DetravConfig.DIGGING_ENABLE) {
+                DetravBlockBreakEventHandler handler = new DetravBlockBreakEventHandler();
+                MinecraftForge.EVENT_BUS.register(handler);
+                FMLCommonHandler.instance().bus().register(handler);
+            }
         }
     }
 

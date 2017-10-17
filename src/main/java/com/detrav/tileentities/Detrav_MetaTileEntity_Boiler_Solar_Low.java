@@ -4,6 +4,7 @@ package com.detrav.tileentities;
  * Created by wital_000 on 04.05.2016.
  */
 
+import com.detrav.utils.DetravConfig;
 import gregtech.api.enums.Dyes;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
@@ -22,7 +23,7 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class Detrav_MetaTileEntity_Boiler_Solar_Low extends GT_MetaTileEntity_Boiler {
     public Detrav_MetaTileEntity_Boiler_Solar_Low(int aID, String aName, String aNameRegional) {
-        super(aID, aName, aNameRegional, "Steam Power by the Sun, 6mB/t", new ITexture[0]);
+        super(aID, aName, aNameRegional, "Steam Power by the Sun, " +(DetravConfig.SOLAR_BOILERS_LOW_STEAM / 25)+"mB/t", new ITexture[0]);
     }
 
     public Detrav_MetaTileEntity_Boiler_Solar_Low(String aName, int aTier, String aDescription, ITexture[][][] aTextures) {
@@ -117,7 +118,7 @@ public class Detrav_MetaTileEntity_Boiler_Solar_Low extends GT_MetaTileEntity_Bo
                         }
                         this.mFluid.amount -= 1;
                         mRunTime += 1;
-                        int tOutput = 150;//6 steam/tick
+                        int tOutput = DetravConfig.SOLAR_BOILERS_LOW_STEAM;//6 steam/tick
                         /*if(mRunTime > 10000){
                             tOutput = Math.max(50, 150 - ((mRunTime-10000)/100));
                         }*/

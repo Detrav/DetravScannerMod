@@ -2,6 +2,7 @@ package com.detrav.events;
 
 import com.detrav.net.DetravModeSwitchPacket02;
 import com.detrav.net.DetravNetwork;
+import com.detrav.utils.DetravConfig;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -21,10 +22,12 @@ public class DetravKeyHandler {
     @SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) {
         if (modeSwitchKey.isPressed()) {
-            if (Minecraft.getMinecraft().thePlayer.isSneaking())
-                DetravNetwork.INSTANCE.sendToServer(new DetravModeSwitchPacket02(Minecraft.getMinecraft().thePlayer, true));
-            else
-                DetravNetwork.INSTANCE.sendToServer(new DetravModeSwitchPacket02(Minecraft.getMinecraft().thePlayer, false));
+            if(DetravConfig.DIGGING_ENABLE) {
+                if (Minecraft.getMinecraft().thePlayer.isSneaking())
+                    DetravNetwork.INSTANCE.sendToServer(new DetravModeSwitchPacket02(Minecraft.getMinecraft().thePlayer, true));
+                else
+                    DetravNetwork.INSTANCE.sendToServer(new DetravModeSwitchPacket02(Minecraft.getMinecraft().thePlayer, false));
+            }
             //Minecraft.getMinecraft().thePlayer.getEntityData().
         }
     }

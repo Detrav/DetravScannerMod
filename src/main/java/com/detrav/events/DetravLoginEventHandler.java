@@ -2,6 +2,7 @@ package com.detrav.events;
 
 import com.detrav.net.DetravModePacket03;
 import com.detrav.net.DetravNetwork;
+import com.detrav.utils.DetravConfig;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,10 +19,11 @@ public class DetravLoginEventHandler {
     {
         if(event.isCanceled()) return;
         if(!event.world.isRemote)
-        if(event.entity instanceof EntityPlayerMP)
-        {
-            DetravNetwork.INSTANCE.sendToPlayer(new DetravModePacket03((EntityPlayerMP)event.entity),(EntityPlayerMP)event.entity);
-            DetravLevelUpEvent.UpdateHealthAttribute((EntityPlayer) event.entity);
+        if(event.entity instanceof EntityPlayerMP) {
+            if (DetravConfig.DIGGING_ENABLE)
+                DetravNetwork.INSTANCE.sendToPlayer(new DetravModePacket03((EntityPlayerMP) event.entity), (EntityPlayerMP) event.entity);
+            if (DetravConfig.EXTRA_HP_ENABLE)
+                DetravLevelUpEvent.UpdateHealthAttribute((EntityPlayer) event.entity);
         }
         //if(Minecraft.getMinecraft().thePlayer!=null)
         //Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(""+(event.entity instanceof EntityPlayerMP)+" | " + event.world.isRemote));
@@ -33,9 +35,11 @@ public class DetravLoginEventHandler {
     public static void register() {
         if (!inited) {
             inited = true;
-            DetravLoginEventHandler handler = new DetravLoginEventHandler();
-            MinecraftForge.EVENT_BUS.register(handler);
-            FMLCommonHandler.instance().bus().register(handler);
+            if(DetravConfig.EXTRA_HP_ENABLE || DetravConfig.DIGGING_ENABLE) {
+                DetravLoginEventHandler handler = new DetravLoginEventHandler();
+                MinecraftForge.EVENT_BUS.register(handler);
+                FMLCommonHandler.instance().bus().register(handler);
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ package com.detrav.items;
 import com.detrav.DetravScannerMod;
 import com.detrav.enums.DetravToolDictNames;
 import com.detrav.items.tools.*;
+import com.detrav.utils.DetravConfig;
 import com.detrav.utils.DetravCreativeTab;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.TC_Aspects;
@@ -28,16 +29,32 @@ public class DetravMetaGeneratedTool01 extends GT_MetaGenerated_Tool {
     public DetravMetaGeneratedTool01() {
         super("detrav.metatool.01");
         INSTANCE = this;
-        addTool(0, "Prospector's Pick", "", new DetravToolProPick(), new Object[]{DetravToolDictNames.craftingToolProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)});
-        addTool(2, "Portable Anvil", "", new DetravToolPortableAnvil(), new Object[] {DetravToolDictNames.craftingToolPortableAnvil}, new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM,10));
-        addTool(4, "Smart plunger 1 bucket", "", new DetravToolSmartPlunger(),new Object[] {DetravToolDictNames.craftingToolSmartPlunger},new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 8L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 5L));
-        addTool(6, "Smart plunger 16 buckets", "", new DetravToolSmartPlunger16(),new Object[] {DetravToolDictNames.craftingToolSmartPlunger},new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 8L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 5L));
-        addTool(8, "Smart plunger 64 buckets", "", new DetravToolSmartPlunger64(),new Object[] {DetravToolDictNames.craftingToolSmartPlunger},new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 8L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 5L));
-        addTool(10, "Smart Tree Tap","Changes resin tap",new DetravToolSmartTreeTap(),new Object[] {DetravToolDictNames.craftingToolSmartTreeTap}, new TC_Aspects.TC_AspectStack(TC_Aspects.ARBOR, 5L) );
-        addTool(100, "Electric Prospector's Scanner (LV)", "", new DetravToolLVElectricProPick(), new Object[]{DetravToolDictNames.craftingToolElectricProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
-        addTool(102, "Electric Prospector's Scanner (MV)", "", new DetravToolMVElectricProPick(), new Object[]{DetravToolDictNames.craftingToolElectricProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
-        addTool(104, "Electric Prospector's Scanner (HV)", "", new DetravToolHVElectricProPick(), new Object[]{DetravToolDictNames.craftingToolElectricProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
-        addTool(106, "Portable Battery Charger", "", new DetravToolPortableCharger(), new Object[]{DetravToolDictNames.craftingToolPortableCharger, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.AURAM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
+        if(DetravConfig.PROPICK_ENABLE) {
+            addTool(0, "Prospector's Pick", "", new DetravToolProPick(), new Object[]{DetravToolDictNames.craftingToolProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)});
+        }
+        if (DetravConfig.REPAIR_TOOL_ENABLE)
+            addTool(2, "Portable Anvil", "", new DetravToolPortableAnvil(), new Object[]{DetravToolDictNames.craftingToolPortableAnvil}, new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 10));
+        if(DetravConfig.SMART_PLUNGER_ENABLE) {
+            addTool(4, "Smart plunger 1 bucket", "", new DetravToolSmartPlunger(), new Object[]{DetravToolDictNames.craftingToolSmartPlunger}, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 8L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 5L));
+            addTool(6, "Smart plunger 16 buckets", "", new DetravToolSmartPlunger16(), new Object[]{DetravToolDictNames.craftingToolSmartPlunger}, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 8L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 5L));
+            addTool(8, "Smart plunger 64 buckets", "", new DetravToolSmartPlunger64(), new Object[]{DetravToolDictNames.craftingToolSmartPlunger}, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 8L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 5L));
+        }
+        if(DetravConfig.TREE_TAP_ENABLE)
+            addTool(10, "Smart Tree Tap", "Changes resin tap", new DetravToolSmartTreeTap(), new Object[]{DetravToolDictNames.craftingToolSmartTreeTap}, new TC_Aspects.TC_AspectStack(TC_Aspects.ARBOR, 5L));
+        if(DetravConfig.PROPICK_ELECTRIC_ENABLE) {
+
+//            ty GTNewHorizons ^_^
+//            addTool(100, "Electric Prospector's Scanner (LuV)", "", new DetravToolLVElectricProPick(), new Object[]{DetravToolDictNames.craftingToolElectricProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
+//            addTool(102, "Electric Prospector's Scanner (ZPM)", "", new DetravToolMVElectricProPick(), new Object[]{DetravToolDictNames.craftingToolElectricProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
+//            addTool(104, "Electric Prospector's Scanner (UV)", "", new DetravToolHVElectricProPick(), new Object[]{DetravToolDictNames.craftingToolElectricProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
+
+//            old
+            addTool(100, "Electric Prospector's Scanner (LV)", "", new DetravToolLVElectricProPick(), new Object[]{DetravToolDictNames.craftingToolElectricProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
+            addTool(102, "Electric Prospector's Scanner (MV)", "", new DetravToolMVElectricProPick(), new Object[]{DetravToolDictNames.craftingToolElectricProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
+            addTool(104, "Electric Prospector's Scanner (HV)", "", new DetravToolHVElectricProPick(), new Object[]{DetravToolDictNames.craftingToolElectricProPick, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.METALLUM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
+        }
+        if (DetravConfig.PORTABLE_CHARGER_ENABLE)
+            addTool(106, "Portable Battery Charger", "", new DetravToolPortableCharger(), new Object[]{DetravToolDictNames.craftingToolPortableCharger, new TC_Aspects.TC_AspectStack(TC_Aspects.INSTRUMENTUM, 2L), new TC_Aspects.TC_AspectStack(TC_Aspects.AURAM, 4L)}, new TC_Aspects.TC_AspectStack(TC_Aspects.ELECTRUM, 4L));
 
         setCreativeTab(DetravScannerMod.TAB_DETRAV);
     }
@@ -100,9 +117,14 @@ public class DetravMetaGeneratedTool01 extends GT_MetaGenerated_Tool {
                 case 103:
                 case 104:
                 case 105:
+                    int rad = getHarvestLevel(aStack, "");
+                    if(rad >= DetravConfig.PROPICK_RADIUSES.length) rad = DetravConfig.PROPICK_RADIUSES[DetravConfig.PROPICK_RADIUSES.length-1];
+                    else if(rad < 0) rad = DetravConfig.PROPICK_RADIUSES[0];
+                    else rad = DetravConfig.PROPICK_RADIUSES[rad];
+
                     aList.add(tOffset + 0, EnumChatFormatting.WHITE + "Durability: " + EnumChatFormatting.GREEN + (tMaxDamage - getToolDamage(aStack)) + " / " + tMaxDamage + EnumChatFormatting.GRAY);
                     aList.add(tOffset + 1, EnumChatFormatting.WHITE + tMaterial.mDefaultLocalName + EnumChatFormatting.GRAY);
-                    aList.add(tOffset + 2, EnumChatFormatting.WHITE + "Chunks: " + EnumChatFormatting.YELLOW + (getHarvestLevel(aStack, "") * 2 + 1) + "x" + (getHarvestLevel(aStack, "") * 2 + 1) + EnumChatFormatting.GRAY);
+                    aList.add(tOffset + 2, EnumChatFormatting.WHITE + "Chunks: " + EnumChatFormatting.YELLOW + rad + "x" + rad + EnumChatFormatting.GRAY);
                     aList.add(tOffset + 3, "Right click on rock for prospecting current chunk!");
                     aList.add(tOffset + 4, "Right click on bedrock for prospecting oil!");
                     aList.add(tOffset + 5, "Right click for scanning!");

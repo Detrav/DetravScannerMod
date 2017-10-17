@@ -1,21 +1,19 @@
 package com.detrav.commands;
 
+import com.detrav.utils.DetravConfig;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-import scala.Int;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
 
@@ -99,7 +97,7 @@ public class DetravBiomeScannerCommand implements ICommand {
 
     @Override
     public boolean canCommandSenderUseCommand(ICommandSender p_71519_1_) {
-        return true;
+        return DetravConfig.BIOME_SCANNER_ENABLE;
     }
 
     @Override

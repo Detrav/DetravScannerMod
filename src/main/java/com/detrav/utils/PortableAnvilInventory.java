@@ -49,11 +49,11 @@ public class PortableAnvilInventory extends InventoryBasic {
                                 }
                                 float flevel = DetravMetaGeneratedTool01.INSTANCE.getLevel(meStack,mat.mToolQuality);
                                 int level = ((int)flevel + 1)*((int)flevel + 1);
-                                long repair = (long) (maxDamage * amount * (flevel+1));
+                                long repair = (long) (maxDamage * amount * (flevel+1) * DetravConfig.REPAIR_RATE);
                                 repair = Math.min(repair,damage);
                                 damage -= repair;
 
-                                float delta = ((float)repair) / ((float)maxDamage) / ((float)level) * 2.7f;
+                                float delta = ((float)repair) / ((float)maxDamage) / ((float)level) * DetravConfig.REPAIR_XP_RATE;
                                 flevel += delta;
                                 DetravMetaGeneratedTool01.INSTANCE.setLevelToItemStack(meStack,mat.mToolQuality,flevel);
 

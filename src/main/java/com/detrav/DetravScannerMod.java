@@ -5,6 +5,7 @@ import com.detrav.commands.DetravLevelUpCommand;
 import com.detrav.events.DetravBlockBreakEventHandler;
 import com.detrav.events.DetravLoginEventHandler;
 import com.detrav.proxies.CommonProxy;
+import com.detrav.utils.DetravConfig;
 import com.detrav.utils.DetravCreativeTab;
 import com.detrav.net.DetravNetwork;
 import cpw.mods.fml.common.Mod;
@@ -23,7 +24,7 @@ import net.minecraftforge.common.config.Configuration;
 public class DetravScannerMod
 {
     public static final String MODID = "detravscannermod";
-    public static final String VERSION = "0.43";
+    public static final String VERSION = "0.44";
 
     public static final CreativeTabs TAB_DETRAV = new DetravCreativeTab();
 
@@ -35,20 +36,19 @@ public class DetravScannerMod
 
     public  DetravScannerMod()
     {
-        GregTech_API.sAfterGTPreload.add(new Detrav_AfterGTPreload_Loader());
+
         new DetravNetwork();
     }
 
     @EventHandler
+    public void preLoad(FMLPreInitializationEvent event) {
+        Configuration config = new Configuration(event.getSuggestedConfigurationFile());
+        new DetravConfig(config);
+        proxy.onPreLoad();
+    }
+
+    @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        Configuration Config = new Configuration(event.getSuggestedConfigurationFile());
-        Config.load();
-
-
-        if (Config.hasChanged()){
-            Config.save();
-        }
-
         proxy.onPreInit();
     }
 

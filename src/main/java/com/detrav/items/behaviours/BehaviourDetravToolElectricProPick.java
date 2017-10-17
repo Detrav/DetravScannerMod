@@ -3,6 +3,7 @@ package com.detrav.items.behaviours;
 import com.detrav.items.DetravMetaGeneratedTool01;
 import com.detrav.net.DetravNetwork;
 import com.detrav.net.DetravProPickPacket00;
+import com.detrav.utils.DetravConfig;
 import gregtech.api.GregTech_API;
 import gregtech.api.items.GT_MetaBase_Item;
 import gregtech.api.objects.ItemData;
@@ -72,7 +73,11 @@ public class BehaviourDetravToolElectricProPick extends BehaviourDetravToolProPi
             //aWorld.getChunkFromBlockCoords()
             int cX = ((int) aPlayer.posX) >> 4;
             int cZ = ((int) aPlayer.posZ) >> 4;
-            int size = aItem.getHarvestLevel(aStack, "") + 1;
+            int rad = aItem.getHarvestLevel(aStack, "");
+            if(rad >= DetravConfig.PROPICK_RADIUSES.length) rad = DetravConfig.PROPICK_RADIUSES[DetravConfig.PROPICK_RADIUSES.length-1];
+            else if(rad < 0) rad = DetravConfig.PROPICK_RADIUSES[0];
+            else rad = DetravConfig.PROPICK_RADIUSES[rad];
+            int size = (rad - 1) / 2 + 1;
             List<Chunk> chunks = new ArrayList<Chunk>();
             //aPlayer.addChatMessage(new ChatComponentText("Scanning Begin, wait!"));
             //DetravProPickPacket00 packet = new DetravProPickPacket00();

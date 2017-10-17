@@ -1,5 +1,6 @@
 package com.detrav.events;
 
+import com.detrav.utils.DetravConfig;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
@@ -38,6 +39,7 @@ public class DetravDrawBlockHighlightEventHandler {
     }
 
     public static boolean drawMoreSelectionBox(EntityPlayer player, MovingObjectPosition mouseHit, int par3, ItemStack par4ItemStack, float par5) {
+        int rad = DetravConfig.DIGGING_RADIUS;
         switch ((int) modeBlockBreak) {
             //case 0: Просто рисуем без экспанда
             case 0:
@@ -47,27 +49,27 @@ public class DetravDrawBlockHighlightEventHandler {
                 switch (mouseHit.sideHit) {//Рисуеи по моусхиту
                     case 0:
                     case 1://x,z
-                        for (int i = -1; i <= 1; i++)
-                            for (int j = -1; j <= 1; j++)
+                        for (int i = -rad; i <= rad; i++)
+                            for (int j = -rad; j <= rad; j++)
                                 drawSelectionBox(player, mouseHit.typeOfHit, mouseHit.blockX + i, mouseHit.blockY, mouseHit.blockZ + j, par3, par4ItemStack, par5);
                         break;
                     case 2:
                     case 3://x,y
-                        for (int i = -1; i <= 1; i++)
-                            for (int j = -1; j <= 1; j++)
+                        for (int i = -rad; i <= rad; i++)
+                            for (int j = -rad; j <= rad; j++)
                                 drawSelectionBox(player, mouseHit.typeOfHit, mouseHit.blockX + i, mouseHit.blockY + j, mouseHit.blockZ, par3, par4ItemStack, par5);
                         break;
                     case 4:
                     case 5://y,z
-                        for (int i = -1; i <= 1; i++)
-                            for (int j = -1; j <= 1; j++)
+                        for (int i = -rad; i <= rad; i++)
+                            for (int j = -rad; j <= rad; j++)
                                 drawSelectionBox(player, mouseHit.typeOfHit, mouseHit.blockX, mouseHit.blockY + i, mouseHit.blockZ + j, par3, par4ItemStack, par5);
                         break;
                 }
                 break;
             case 2://x,z
-                for (int i = -1; i <= 1; i++)
-                    for (int j = -1; j <= 1; j++)
+                for (int i = -rad; i <= rad; i++)
+                    for (int j = -rad; j <= rad; j++)
                         drawSelectionBox(player, mouseHit.typeOfHit, mouseHit.blockX + i, mouseHit.blockY, mouseHit.blockZ + j, par3, par4ItemStack, par5);
                 break;
             case 3:
@@ -76,21 +78,21 @@ public class DetravDrawBlockHighlightEventHandler {
                 while (rotationYaw < -360) rotationYaw += 360F;
                 if ((-135 <= rotationYaw && rotationYaw <= -45) || (-315 <= rotationYaw && rotationYaw <= -225)) {
                     //y,z
-                    for (int i = -1; i <= 1; i++)
-                        for (int j = -1; j <= 1; j++)
+                    for (int i = -rad; i <= rad; i++)
+                        for (int j = -rad; j <= rad; j++)
                             drawSelectionBox(player, mouseHit.typeOfHit, mouseHit.blockX, mouseHit.blockY + i, mouseHit.blockZ + j, par3, par4ItemStack, par5);
                 } else if ((-225 <= rotationYaw && rotationYaw <= -135) || -45 <= rotationYaw || rotationYaw <= -315) {
                     //x,y
-                    for (int i = -1; i <= 1; i++)
-                        for (int j = -1; j <= 1; j++)
+                    for (int i = -rad; i <= rad; i++)
+                        for (int j = -rad; j <= rad; j++)
                             drawSelectionBox(player, mouseHit.typeOfHit, mouseHit.blockX + i, mouseHit.blockY + j, mouseHit.blockZ, par3, par4ItemStack, par5);
                 }
                 break;
             case 4:
                 //x,y,z
-                for (int i = -1; i <= 1; i++)
-                    for (int j = -1; j <= 1; j++)
-                        for (int k = -1; k <= 1; k++)
+                for (int i = -rad; i <= rad; i++)
+                    for (int j = -rad; j <= rad; j++)
+                        for (int k = -rad; k <= rad; k++)
                             drawSelectionBox(player, mouseHit.typeOfHit, mouseHit.blockX + i, mouseHit.blockY + j, mouseHit.blockZ + k, par3, par4ItemStack, par5);
                 break;
         }
@@ -260,9 +262,11 @@ public class DetravDrawBlockHighlightEventHandler {
     public static void register() {
         if (!inited) {
             inited = true;
-            DetravDrawBlockHighlightEventHandler handler = new DetravDrawBlockHighlightEventHandler();
-            MinecraftForge.EVENT_BUS.register(handler);
-            FMLCommonHandler.instance().bus().register(handler);
+            if (DetravConfig.DIGGING_HIGHLIGHT) {
+                DetravDrawBlockHighlightEventHandler handler = new DetravDrawBlockHighlightEventHandler();
+                MinecraftForge.EVENT_BUS.register(handler);
+                FMLCommonHandler.instance().bus().register(handler);
+            }
         }
     }
 }
