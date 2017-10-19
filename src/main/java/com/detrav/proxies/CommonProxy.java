@@ -23,6 +23,7 @@ import com.detrav.tileentities.Detrav_MetaTileEntity_Boiler_Solar_High;
 import com.detrav.tileentities.Detrav_MetaTileEntity_Boiler_Solar_Low;
 import com.detrav.tileentities.Detrav_MetaTileEntity_Boiler_Solar_Medium;
 import com.detrav.utils.DetravConfig;
+import com.detrav.utils.Detrav_AfterGTPreload_Loader;
 import cpw.mods.fml.common.network.IGuiHandler;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.*;
@@ -137,7 +138,7 @@ public class CommonProxy implements IGuiHandler {
 
     public void onPreLoad()
     {
-
+        new Detrav_AfterGTPreload_Loader().run();
     }
 
     public void sendPlayerExeption(String s) {

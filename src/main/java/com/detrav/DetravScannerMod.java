@@ -21,7 +21,7 @@ import gregtech.api.GregTech_API;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
 
-@Mod(modid = DetravScannerMod.MODID, version = DetravScannerMod.VERSION,dependencies = "required-after:IC2;required-before:gregtech")
+@Mod(modid = DetravScannerMod.MODID, version = DetravScannerMod.VERSION,dependencies = "required-after:IC2;required-after:gregtech")
 public class DetravScannerMod
 {
     public static final String MODID = "detravscannermod";
@@ -37,12 +37,12 @@ public class DetravScannerMod
 
     public  DetravScannerMod()
     {
-        GregTech_API.sAfterGTPreload.add(new Detrav_AfterGTPreload_Loader());
         new DetravNetwork();
     }
 
     @EventHandler
     public void preLoad(FMLPreInitializationEvent event) {
+
         Configuration config = new Configuration(event.getSuggestedConfigurationFile());
         new DetravConfig(config);
         proxy.onPreLoad();

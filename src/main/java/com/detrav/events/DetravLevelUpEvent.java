@@ -58,7 +58,6 @@ public class DetravLevelUpEvent {
         if(level >= DetravConfig.EXTRA_HP_LEVELS.length)
             level = DetravConfig.EXTRA_HP_LEVELS.length-1;
         if(level >=0) {
-            level = 0;
             hp_boost = DetravConfig.EXTRA_HP_LEVELS[level];
         }
         else hp_boost = 0;
