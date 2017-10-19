@@ -36,6 +36,8 @@ public class DetravConfig {
     public static int SOLAR_BOILERS_MEDIUM_STEAM = 375;
     public static int SOLAR_BOILERS_HIGH_STEAM = 750;
 
+    //coins
+    public static boolean COINS_ENABLE = true;
 
 
 
@@ -47,11 +49,12 @@ public class DetravConfig {
         REPAIR_TOOL_ENABLE = config.get("General", "RepairTool", true).getBoolean();
         BIOME_SCANNER_ENABLE = config.get("General", "BiomeScannerCommand", true).getBoolean();
         PORTABLE_CHARGER_ENABLE = config.get("General", "PortableCharger", true).getBoolean();
-        PROPICK_ENABLE = config.get("General", "PropPick", true).getBoolean();
+        PROPICK_ENABLE = config.get("General", "ProPick", true).getBoolean();
         PROPICK_ELECTRIC_ENABLE = config.get("General", "ProPickElectric", true).getBoolean();
         TREE_TAP_ENABLE = config.get("General", "TreeTap", true).getBoolean();
         SMART_PLUNGER_ENABLE = config.get("General", "SmartPlunger", true).getBoolean();
         SOLAR_BOILERS_ENABLE = config.get("General", "SolarBoilers", true).getBoolean();
+        COINS_ENABLE = config.get("General", "Coins", true).getBoolean();
         //3x3
         DIGGING_RADIUS = config.get("Digging", "Radius", 1).getInt();
         DIGGING_HIGHLIGHT = config.get("Digging", "HighLight", true).getBoolean();

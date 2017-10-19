@@ -1,5 +1,6 @@
 package com.detrav.events;
 
+import com.detrav.utils.DetravConfig;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import gregtech.api.enums.ItemList;
@@ -82,9 +83,11 @@ public class DetravEntityDropEvent {
     public static void register() {
         if (!inited) {
             inited = true;
-            DetravEntityDropEvent handler = new DetravEntityDropEvent();
-            MinecraftForge.EVENT_BUS.register(handler);
-            FMLCommonHandler.instance().bus().register(handler);
+            if(DetravConfig.COINS_ENABLE) {
+                DetravEntityDropEvent handler = new DetravEntityDropEvent();
+                MinecraftForge.EVENT_BUS.register(handler);
+                FMLCommonHandler.instance().bus().register(handler);
+            }
         }
     }
 }
