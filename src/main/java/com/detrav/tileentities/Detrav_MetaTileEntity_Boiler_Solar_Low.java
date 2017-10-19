@@ -23,17 +23,12 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class Detrav_MetaTileEntity_Boiler_Solar_Low extends GT_MetaTileEntity_Boiler {
     public Detrav_MetaTileEntity_Boiler_Solar_Low(int aID, String aName, String aNameRegional) {
-        super(aID, aName, aNameRegional, "Steam Power by the Sun, " +(DetravConfig.SOLAR_BOILERS_LOW_STEAM / 25)+"mB/t", new ITexture[0]);
+        super(aID, aName, aNameRegional, new String[]{ "Steam Power by the Sun, " +(DetravConfig.SOLAR_BOILERS_LOW_STEAM / 25)+"mB/t" , "This machine can not explode!" }, new ITexture[0]);    }
+
+    public Detrav_MetaTileEntity_Boiler_Solar_Low(String aName, int aTier, String[] mDescription, ITexture[][][] aTextures) {
+        super(aName, aTier, mDescription, aTextures);
     }
 
-    public Detrav_MetaTileEntity_Boiler_Solar_Low(String aName, int aTier, String aDescription, ITexture[][][] aTextures) {
-        super(aName, aTier, aDescription, aTextures);
-    }
-
-    @Override
-    public String[] getDescription() {
-        return new String[]{mDescription, "This machine can not explode!"};
-    }
 
     public ITexture[][][] getTextureSet(ITexture[] aTextures) {
         ITexture[][][] rTextures = new ITexture[4][17][];
@@ -67,7 +62,7 @@ public class Detrav_MetaTileEntity_Boiler_Solar_Low extends GT_MetaTileEntity_Bo
     }
 
     public MetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new Detrav_MetaTileEntity_Boiler_Solar_Low(this.mName, this.mTier, this.mDescription, this.mTextures);
+        return new Detrav_MetaTileEntity_Boiler_Solar_Low(this.mName, this.mTier, this.getDescription(), this.mTextures);
     }
 
     private int mRunTime = 0;

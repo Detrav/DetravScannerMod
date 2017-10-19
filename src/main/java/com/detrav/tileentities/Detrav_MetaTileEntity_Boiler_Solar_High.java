@@ -26,8 +26,8 @@ public class Detrav_MetaTileEntity_Boiler_Solar_High extends GT_MetaTileEntity_B
         super(aID, aName, aNameRegional, new String[] {"Steam Power by the Sun, " +(DetravConfig.SOLAR_BOILERS_HIGH_STEAM / 25)+"mB/t", "This machine can not explode!"}, new ITexture[0]);
     }
 
-    public Detrav_MetaTileEntity_Boiler_Solar_High(String aName, int aTier, String[] aDescription, ITexture[][][] aTextures) {
-        super(aName, aTier, aDescription, aTextures);
+    public Detrav_MetaTileEntity_Boiler_Solar_High(String aName, int aTier, String[] mDescription, ITexture[][][] aTextures) {
+        super(aName, aTier, mDescription, aTextures);
     }
 
     public ITexture[][][] getTextureSet(ITexture[] aTextures) {
