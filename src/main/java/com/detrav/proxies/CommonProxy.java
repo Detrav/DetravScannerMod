@@ -138,41 +138,6 @@ public class CommonProxy implements IGuiHandler {
     public void onPreLoad()
     {
 
-        //items
-        new DetravMetaGeneratedItem01();
-        new DetravMetaGeneratedTool01();
-
-        //recipes and etc
-        new ProcessingDetravToolProPick();
-        new ProcessingDetravShaping();
-        if (DetravConfig.PORTABLE_CHARGER_ENABLE)
-            new ProcessingDetravPortableCharger();
-        if(DetravConfig.SMART_PLUNGER_ENABLE)
-            new ProcessingDetravSmartPlunger();
-        //new Detrav_MetaGenerated_Tool_01();
-        //new ProcessingDetravToolProPick();
-
-        if (DetravConfig.REPAIR_TOOL_ENABLE)
-            GT_ModHandler.addCraftingRecipe(DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(2, 1, Materials.Iron, Materials._NULL, null)
-                    , GT_ModHandler.RecipeBits.DISMANTLEABLE | GT_ModHandler.RecipeBits.DO_NOT_CHECK_FOR_COLLISIONS | GT_ModHandler.RecipeBits.BUFFERED, new Object[]{"IBI", " I ", "III", Character.valueOf('I'), OrePrefixes.ingot.get(Materials.Iron), Character.valueOf('B'), OrePrefixes.block.get(Materials.Iron)});
-
-        //ItemList.Machine_Bronze_Boiler_Solar.set(new GT_MetaTileEntity_Boiler_Solar(105, "boiler.solar", "Simple Solar Boiler").getStackForm(1L));
-        if(DetravConfig.SOLAR_BOILERS_ENABLE) {
-
-
-            DetravItemList.Solar_Boiler_Low.set(new Detrav_MetaTileEntity_Boiler_Solar_Low(2051, "boiler.bronze.solar", "Bronze Solar Boiler").getStackForm(1L));
-            DetravItemList.Solar_Boiler_Medium.set(new Detrav_MetaTileEntity_Boiler_Solar_Medium(2052, "boiler.steel.solar", "Steel Solar Boiler").getStackForm(1L));
-            DetravItemList.Solar_Boiler_High.set(new Detrav_MetaTileEntity_Boiler_Solar_High(2053, "boiler.stainless.steel.solar", "Stainless Steel Solar Boiler").getStackForm(1L));
-        }
-        //DetravItemList.Anvil.set()
-
-        // GameRegistry.addRecipe(new DetravRepairRecipe());
-    }
-
-
-    public void onPreInit()
-    {
-
     }
 
     public void sendPlayerExeption(String s) {

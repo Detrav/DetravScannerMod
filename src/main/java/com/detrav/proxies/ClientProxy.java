@@ -41,9 +41,9 @@ public class ClientProxy extends CommonProxy {
         //Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("NetworkTested: " + Integer.toString(level)));
     }
     @Override
-    public void onPreInit()
+    public void onPreLoad()
     {
-        super.onPreInit();
+        super.onPreLoad();
         DetravKeyHandler.register();
     }
 

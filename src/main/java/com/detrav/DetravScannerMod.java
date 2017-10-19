@@ -8,6 +8,7 @@ import com.detrav.proxies.CommonProxy;
 import com.detrav.utils.DetravConfig;
 import com.detrav.utils.DetravCreativeTab;
 import com.detrav.net.DetravNetwork;
+import com.detrav.utils.Detrav_AfterGTPreload_Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
@@ -20,11 +21,11 @@ import gregtech.api.GregTech_API;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
 
-@Mod(modid = DetravScannerMod.MODID, version = DetravScannerMod.VERSION,dependencies = "required-after:IC2;required-after:gregtech")
+@Mod(modid = DetravScannerMod.MODID, version = DetravScannerMod.VERSION,dependencies = "required-after:IC2;required-before:gregtech")
 public class DetravScannerMod
 {
     public static final String MODID = "detravscannermod";
-    public static final String VERSION = "0.44";
+    public static final String VERSION = "0.47";
 
     public static final CreativeTabs TAB_DETRAV = new DetravCreativeTab();
 
@@ -36,7 +37,7 @@ public class DetravScannerMod
 
     public  DetravScannerMod()
     {
-
+        GregTech_API.sAfterGTPreload.add(new Detrav_AfterGTPreload_Loader());
         new DetravNetwork();
     }
 
@@ -48,21 +49,8 @@ public class DetravScannerMod
     }
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        proxy.onPreInit();
-    }
-
-        @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
-		// some example code
-        //System.out.println("DIRT BLOCK >> "+Blocks.dirt.getUnlocalizedName());
+    public void onLoad(FMLInitializationEvent aEvent) {
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy );
-    }
-
-    @EventHandler
-    public void onLoad(FMLInitializationEvent aEvent)
-    {
         proxy.onLoad();
     }
 

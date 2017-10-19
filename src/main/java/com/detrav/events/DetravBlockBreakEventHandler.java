@@ -26,18 +26,31 @@ import net.minecraftforge.event.world.BlockEvent;
  * Created by wital_000 on 13.04.2016.
  */
 public class DetravBlockBreakEventHandler {
+
+    static String thisName = DetravBlockBreakEventHandler.class.getCanonicalName();
+
     @SubscribeEvent
     public void onBreakBlock(BlockEvent.BreakEvent ev) {
         if (ev.isCanceled())
             return;
-        if (ev instanceof DetravBlockBreakEvent)
-            return;
+//        if (ev instanceof DetravBlockBreakEvent)
+//            return;
         if (!ev.world.isRemote) {
             EntityPlayer player = ev.getPlayer();
             if ((player instanceof EntityPlayerMP) && ((EntityPlayerMP) player).theItemInWorldManager.getGameType() != WorldSettings.GameType.SURVIVAL)
                 return;
             if (player.capabilities.isCreativeMode)
                 return;
+
+
+            StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+            for (int i =2; i< stackTrace.length; i++) {
+                //check for recursive
+                if (stackTrace[i].getClassName().equals(thisName)) {
+                    return;
+                }
+            }
+
             NBTTagCompound entityData = player.getEntityData();
             long minningMode = entityData.getLong("detrav.minning.mode");
             if (minningMode == 0) return;
