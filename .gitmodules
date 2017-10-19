@@ -1,4 +1,4 @@
 [submodule "libs"]
 	path = libs
 	url = https://github.com/Detrav/GT_Libs.git
-        branch = master
+        branch = gtnewhorizons
