@@ -13,6 +13,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+import gregtech.api.enums.Materials;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -107,8 +108,9 @@ public class DetravScannerCommand implements ICommand {
                         TileEntity entity = c.getTileEntityUnsafe(x, y, z);
                         if (entity != null) {
                             GT_TileEntity_Ores gt_entity = (GT_TileEntity_Ores) entity;
-                            String name = GT_LanguageManager.getTranslation(
-                                    b.getUnlocalizedName() + "." + gt_entity.getMetaData() + ".name");
+                            short meta = gt_entity.getMetaData();
+                            String name = Materials.getLocalizedNameForItem(
+                            GT_LanguageManager.getTranslation(b.getUnlocalizedName() + "." + meta + ".name"), meta);
                             if(name.startsWith("Small")) continue;
                             if (fName == null || name.toLowerCase().contains(fName)) {
                                 if (!ores.containsKey(name))
