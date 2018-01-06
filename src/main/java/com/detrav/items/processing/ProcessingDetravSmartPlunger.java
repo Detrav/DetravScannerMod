@@ -41,7 +41,57 @@ public class ProcessingDetravSmartPlunger implements IOreRecipeRegistrator {
                         new Object[]{"xRR", " CR", "S f",
                                 Character.valueOf('S'), OrePrefixes.stick.get(aMaterial),
                                 Character.valueOf('R'), OrePrefixes.plate.get(Materials.Rubber),
+                                Character.valueOf('C'), ItemList.Large_Fluid_Cell_Aluminium.get(1)});
+                //gtnewhorizons
+                GT_ModHandler.addCraftingRecipe(
+                        DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(12, 1, aMaterial, aMaterial, null),
+                        GT_ModHandler.RecipeBits.DO_NOT_CHECK_FOR_COLLISIONS | GT_ModHandler.RecipeBits.BUFFERED,
+                        new Object[]{"xRR", " CR", "S f",
+                                Character.valueOf('S'), OrePrefixes.stick.get(aMaterial),
+                                Character.valueOf('R'), OrePrefixes.plate.get(Materials.Rubber),
+                                Character.valueOf('C'), ItemList.Large_Fluid_Cell_StainlessSteel.get(1)});
+                GT_ModHandler.addCraftingRecipe(
+                        DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(14, 1, aMaterial, aMaterial, null),
+                        GT_ModHandler.RecipeBits.DO_NOT_CHECK_FOR_COLLISIONS | GT_ModHandler.RecipeBits.BUFFERED,
+                        new Object[]{"xRR", " CR", "S f",
+                                Character.valueOf('S'), OrePrefixes.stick.get(aMaterial),
+                                Character.valueOf('R'), OrePrefixes.plate.get(Materials.Rubber),
+                                Character.valueOf('C'), ItemList.Large_Fluid_Cell_Titanium.get(1)});
+                GT_ModHandler.addCraftingRecipe(
+                        DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(16, 1, aMaterial, aMaterial, null),
+                        GT_ModHandler.RecipeBits.DO_NOT_CHECK_FOR_COLLISIONS | GT_ModHandler.RecipeBits.BUFFERED,
+                        new Object[]{"xRR", " CR", "S f",
+                                Character.valueOf('S'), OrePrefixes.stick.get(aMaterial),
+                                Character.valueOf('R'), OrePrefixes.plate.get(Materials.Rubber),
                                 Character.valueOf('C'), ItemList.Large_Fluid_Cell_TungstenSteel.get(1)});
+                GT_ModHandler.addCraftingRecipe(
+                        DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(18, 1, aMaterial, aMaterial, null),
+                        GT_ModHandler.RecipeBits.DO_NOT_CHECK_FOR_COLLISIONS | GT_ModHandler.RecipeBits.BUFFERED,
+                        new Object[]{"xRR", " CR", "S f",
+                                Character.valueOf('S'), OrePrefixes.stick.get(aMaterial),
+                                Character.valueOf('R'), OrePrefixes.plate.get(Materials.Rubber),
+                                Character.valueOf('C'), ItemList.Large_Fluid_Cell_Chrome.get(1)});
+                GT_ModHandler.addCraftingRecipe(
+                        DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(20, 1, aMaterial, aMaterial, null),
+                        GT_ModHandler.RecipeBits.DO_NOT_CHECK_FOR_COLLISIONS | GT_ModHandler.RecipeBits.BUFFERED,
+                        new Object[]{"xRR", " CR", "S f",
+                                Character.valueOf('S'), OrePrefixes.stick.get(aMaterial),
+                                Character.valueOf('R'), OrePrefixes.plate.get(Materials.Rubber),
+                                Character.valueOf('C'), ItemList.Large_Fluid_Cell_Iridium.get(1)});
+                GT_ModHandler.addCraftingRecipe(
+                        DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(22, 1, aMaterial, aMaterial, null),
+                        GT_ModHandler.RecipeBits.DO_NOT_CHECK_FOR_COLLISIONS | GT_ModHandler.RecipeBits.BUFFERED,
+                        new Object[]{"xRR", " CR", "S f",
+                                Character.valueOf('S'), OrePrefixes.stick.get(aMaterial),
+                                Character.valueOf('R'), OrePrefixes.plate.get(Materials.Rubber),
+                                Character.valueOf('C'), ItemList.Large_Fluid_Cell_Osmium.get(1)});
+                GT_ModHandler.addCraftingRecipe(
+                        DetravMetaGeneratedTool01.INSTANCE.getToolWithStats(24, 1, aMaterial, aMaterial, null),
+                        GT_ModHandler.RecipeBits.DO_NOT_CHECK_FOR_COLLISIONS | GT_ModHandler.RecipeBits.BUFFERED,
+                        new Object[]{"xRR", " CR", "S f",
+                                Character.valueOf('S'), OrePrefixes.stick.get(aMaterial),
+                                Character.valueOf('R'), OrePrefixes.plate.get(Materials.Rubber),
+                                Character.valueOf('C'), ItemList.Large_Fluid_Cell_Neutronium.get(1)});
             }
         }
     }

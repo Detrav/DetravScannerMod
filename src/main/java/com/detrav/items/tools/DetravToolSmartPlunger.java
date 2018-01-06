@@ -22,12 +22,21 @@ import net.minecraft.util.IChatComponent;
  */
 public class DetravToolSmartPlunger
         extends GT_Tool {
+
+    protected final int mBuckets;
+    protected final float mDurabilityMultiplier;
+
+    public DetravToolSmartPlunger(int aBuckets, float aDurabilityMultiplier) {
+        mBuckets = aBuckets;
+        mDurabilityMultiplier = aDurabilityMultiplier;
+    }
+
     public float getBaseDamage() {
         return 1.25F;
     }
 
     public float getMaxDurabilityMultiplier() {
-        return 0.50F;
+        return mDurabilityMultiplier;
     }
 
     public String getCraftingSound() {
@@ -60,7 +69,7 @@ public class DetravToolSmartPlunger
     }
 
     public void onStatsAddedToTool(GT_MetaGenerated_Tool aItem, int aID) {
-        aItem.addItemBehavior(aID, new BehaviourDetravToolSmartPlunger(getToolDamagePerDropConversion(),1000));
+        aItem.addItemBehavior(aID, new BehaviourDetravToolSmartPlunger(getToolDamagePerDropConversion(), mBuckets * 1000));
     }
 
     public IChatComponent getDeathMessage(EntityLivingBase aPlayer, EntityLivingBase aEntity) {
