@@ -101,17 +101,27 @@ public class DetravMetaGeneratedTool01 extends GT_MetaGenerated_Tool {
                 case 4:
                 case 6:
                 case 8:
+                case 12:
+                case 14:
+                case 16:
+                case 18:
+                case 20:
+                case 22:
+                case 24:
                     aList.add(tOffset + 0, EnumChatFormatting.WHITE + "Durability: " + EnumChatFormatting.GREEN + (tMaxDamage - getToolDamage(aStack)) + " / " + tMaxDamage + EnumChatFormatting.GRAY);
                     aList.add(tOffset + 1, EnumChatFormatting.WHITE + tMaterial.mDefaultLocalName + EnumChatFormatting.YELLOW + " lvl " + getHarvestLevel(aStack, "") + EnumChatFormatting.GRAY);
-                    aList.add(tOffset + 2, "It can suck in fluid");
+                    aList.add(tOffset + 2, "It can suck in fluids:");
+                    aList.add(tOffset + 3, " - from and to TANKs");
+                    aList.add(tOffset + 4, " - from gt machine OUTPUT slot");
+                    aList.add(tOffset + 5, " - from and to gt machine INPUT slot");
                     FluidStack stack = getFluidStackFromDetravData(aStack);
                     if(stack!=null && stack.amount >0)
                     {
-                        aList.add(tOffset +3, "Fluid: "+stack.getLocalizedName()+" : "+stack.amount);
+                        aList.add(tOffset +6, EnumChatFormatting.WHITE + "Fluid:  "+stack.getLocalizedName()+" : "+stack.amount + EnumChatFormatting.GRAY);
                     }
                     else
                     {
-                        aList.add(tOffset +3, "Fluid: empty");
+                        aList.add(tOffset +6, "Fluid: empty");
                     }
                     break;
                 case 100:
