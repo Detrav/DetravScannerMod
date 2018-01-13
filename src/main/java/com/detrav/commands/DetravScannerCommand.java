@@ -109,8 +109,8 @@ public class DetravScannerCommand implements ICommand {
                         if (entity != null) {
                             GT_TileEntity_Ores gt_entity = (GT_TileEntity_Ores) entity;
                             short meta = gt_entity.getMetaData();
-                            String name = Materials.getLocalizedNameForItem(
-                            GT_LanguageManager.getTranslation(b.getUnlocalizedName() + "." + meta + ".name"), meta);
+                            String name =
+                            GT_LanguageManager.getTranslation(b.getUnlocalizedName() + "." + meta + ".name");
                             if(name.startsWith("Small")) continue;
                             if (fName == null || name.toLowerCase().contains(fName)) {
                                 if (!ores.containsKey(name))
