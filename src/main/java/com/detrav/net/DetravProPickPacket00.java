@@ -148,7 +148,7 @@ public class DetravProPickPacket00 extends DetravPacket {
                             }
                             rgba = tMaterial.getRGBA();
                             //ores.put(GT_Ore)
-                            name = tMaterial.getLocalizedNameForItem(GT_LanguageManager.getTranslation("gt.blockores." + meta + ".name"));
+                            name = GT_LanguageManager.getTranslation("gt.blockores." + meta + ".name");
 
                             raster.setSample(i, j, 0, rgba[0]);
                             raster.setSample(i, j, 1, rgba[1]);
